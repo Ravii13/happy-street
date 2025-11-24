@@ -43,7 +43,7 @@ const Cart = () => {
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
-          <p>Remove</p>
+          {/* <p>Remove</p> */}
         </div>
         <br />
         <hr />
@@ -62,7 +62,7 @@ const Cart = () => {
                     <button className="qty-btn" onClick={() => addToCart(item._id)} aria-label={`Increase ${item.name}`}>&#43;</button>
                   </div>
                   <p>₹{item.price * qty}</p>
-                  <p onClick={() => setQuantity(item._id, 0)} className='cross' title="Remove item">X</p>
+                  {/* <p onClick={() => setQuantity(item._id, 0)} className='cross' title="Remove item">X</p> */}
                 </div>
                 <hr />
               </div>
