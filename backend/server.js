@@ -16,7 +16,13 @@ const port =process.env.PORT|| 3000
 
 // middleware
 app.use(express.json())
-app.use(cors())
+// Configure CORS: if a production/base URL is provided, restrict to it; otherwise allow all origins.
+const publicUrl = process.env.BASE_URL || process.env.PRODUCTION_URL || process.env.PUBLIC_URL || null
+if (publicUrl) {
+    app.use(cors({ origin: publicUrl }))
+} else {
+    app.use(cors())
+}
 
 // db connection
 connectDB()
@@ -57,5 +63,6 @@ app.get("/", (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Server Started on http://localhost:${port}`)
+    const displayUrl = publicUrl || `http://localhost:${port}`
+    console.log(`Server Started on ${displayUrl}`)
 })
