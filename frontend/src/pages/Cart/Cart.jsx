@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
 
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext)
+  const { cartItems, food_list, removeFromCart, addToCart, getTotalCartAmount, url } = useContext(StoreContext)
 
   const navigate = useNavigate()
 
@@ -47,22 +47,28 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {food_list.map((item, index) => {
-          if (cartItems[item._id] > 0) {
+        {food_list.map((item) => {
+          const qty = cartItems[item._id] || 0
+          if (qty > 0) {
             return (
-              <div>
+              <div key={item._id}>
                 <div className="cart-items-title cart-items-item">
                   <img src={url + "/images/" + item.image} alt="item-image" />
-                  <p>{item.name}</p>
-                  <p>₹{item.price}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>₹{item.price * cartItems[item._id]}</p>
-                  <p onClick={() => removeFromCart(item._id)} className='cross'>X</p>
+                  <p className="cart-item-title">{item.name}</p>
+                  <p className="cart-price">₹{item.price}</p>
+                  <div className="qty-controls">
+                    <button className="qty-btn" onClick={() => removeFromCart(item._id)} aria-label={`Decrease ${item.name}`}>&minus;</button>
+                    <span className="qty-value">{qty}</span>
+                    <button className="qty-btn" onClick={() => addToCart(item._id)} aria-label={`Increase ${item.name}`}>&#43;</button>
+                  </div>
+                  <p className="cart-line-total">₹{item.price * qty}</p>
+                  <p onClick={() => { while (cartItems[item._id] > 0) { removeFromCart(item._id) } }} className='cross' title="Remove item">X</p>
                 </div>
                 <hr />
               </div>
             )
           }
+          return null
         })}
       </div>
       <div className="cart-bottom">

@@ -36,7 +36,8 @@
 
 .cart-items-title {
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    /* image | title | price | qty | total | remove */
+    grid-template-columns: 60px 1fr 90px 120px 90px 40px;
     align-items: center;
     color: grey;
     font-size: max(1vw, 12px); 
@@ -47,7 +48,7 @@
     margin: 10px 0;
     color: black;
     display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    grid-template-columns: 60px 1fr 90px 120px 90px 40px;
     align-items: center;
     gap: 10px; 
 }
@@ -55,6 +56,30 @@
 .cart-items-item img {
     width: 50px;
     height: auto; 
+}
+
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+.qty-btn {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.qty-value {
+    min-width: 28px;
+    text-align: center;
+    font-weight: 600;
 }
 
 .cart hr {
@@ -220,13 +245,13 @@
         margin-top: 60px;
     }
     .cart-items {
-        overflow-x: auto; 
+        overflow-x: visible; 
         padding: 0 2%;
     }
     .cart-items-title,
     .cart-items-item {
         font-size: 12px;
-        grid-template-columns: 0.7fr 1.8fr 1fr 0.8fr 1fr 0.5fr;
+        grid-template-columns: 50px 1fr 80px 100px 80px 36px;
     }
     .cart-items-item img {
         width: 40px;
@@ -261,9 +286,8 @@
     }
     .cart-items-title,
     .cart-items-item {
-        min-width: 500px; 
         font-size: 11px;
-        grid-template-columns: 0.6fr 2fr 1fr 0.7fr 1fr 0.4fr; 
+        grid-template-columns: 48px 1.8fr 70px 90px 70px 36px; 
     }
     .cart-items-item img {
         width: 35px;
@@ -295,12 +319,37 @@
 @media (max-width: 375px) {
     .cart-items-title,
     .cart-items-item {
-        min-width: 450px; 
         font-size: 10px;
+        /* switch to a 2-column layout: image + content */
+        grid-template-columns: 48px 1fr;
+        align-items: start;
     }
+    /* Remove any min-width forcing horizontal scroll */
+    .cart-items-title, .cart-items-item { min-width: unset; }
     .cart-items-item img {
         width: 30px;
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
     }
+    .cart-items-item .cart-item-title {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    /* Place price, qty, total and remove below the title and stack nicely */
+    .cart-items-item .cart-price,
+    .cart-items-item .qty-controls,
+    .cart-items-item .cart-line-total,
+    .cart-items-item .cross {
+        grid-column: 2 / 3;
+        grid-row: auto;
+        margin-top: 6px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    /* Make remove button align to the right */
+    .cart-items-item .cross { float: right; }
+    /* Hide header row to save space on very small screens */
+    .cart-items-title { display: none; }
     .cart-bottom {
         padding: 0 3%;
     }

@@ -2,7 +2,19 @@ import orderModel from "../models/orderModel.js";
 import userModel from '../models/userModels.js'
 import Stripe from "stripe"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+// Initialize Stripe only when the secret key is provided. If missing, avoid
+// creating the Stripe client at module init time so the app doesn't crash.
+let stripe = null
+if (process.env.STRIPE_SECRET_KEY) {
+    try {
+        stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+    } catch (e) {
+        console.error('Failed to initialize Stripe client:', e)
+        stripe = null
+    }
+} else {
+    console.warn('STRIPE_SECRET_KEY not set — Stripe payments disabled')
+}
 
 // placing user order for frontend
 
@@ -41,6 +53,11 @@ const placeOrder = async (req, res) => {
             },
             quantity: 1
         })
+
+        if (!stripe) {
+            console.error('Stripe is not configured. STRIPE_SECRET_KEY is missing.')
+            return res.status(500).json({ success: false, message: 'Payment provider not configured' })
+        }
 
         const session = await stripe.checkout.sessions.create({
             line_items: line_items,
