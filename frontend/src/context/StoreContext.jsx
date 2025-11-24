@@ -5,7 +5,9 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = ({ children }) => {
 
     const [cartItems, setCartItems] = useState({});
-    const url = "http://localhost:3000"
+    // Use relative API path so the frontend works both locally (with proxy) and in production
+    // when served from the same origin (nginx). Avoid hardcoding localhost which breaks in production.
+    const url = ""
     const [token, setTokenState] = useState("")
     const [food_list, setFoodList] = useState([])
     const [authChecked, setAuthChecked] = useState(false)
