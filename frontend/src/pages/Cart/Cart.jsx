@@ -37,39 +37,42 @@ const Cart = () => {
   return (
     <div className='cart'>
       <div className="cart-items">
-        <div className="cart-items-title">
-          <p>Items</p>
-          <p>Title</p>
-          <p>Price</p>
-          <p>Quantity</p>
-          <p>Total</p>
-          {/* <p>Remove</p> */}
-        </div>
-        <br />
-        <hr />
-        {food_list.map((item, index) => {
-          const qty = cartItems[item._id] || 0
-          if (qty > 0) {
-            return (
-              <div key={item._id}>
-                <div className="cart-items-title cart-items-item">
-                  <img src={url + "/images/" + item.image} alt="item-image" />
-                  <p className="cart-item-title">{item.name}</p>
-                  <p>₹{item.price}</p>
-                  <div className="qty-controls">
-                    <button className="qty-btn" onClick={() => removeFromCart(item._id)} aria-label={`Decrease ${item.name}`}>&minus;</button>
-                    <input type="number" className="qty-input" value={qty} min={0} onChange={(e) => setQuantity(item._id, Number(e.target.value))} />
-                    <button className="qty-btn" onClick={() => addToCart(item._id)} aria-label={`Increase ${item.name}`}>&#43;</button>
-                  </div>
-                  <p>₹{item.price * qty}</p>
-                  {/* <p onClick={() => setQuantity(item._id, 0)} className='cross' title="Remove item">X</p> */}
-                </div>
-                <hr />
-              </div>
-            )
-          }
-          return null
-        })}
+        <table className="cart-table">
+          <thead>
+            <tr>
+              <th>Items</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {food_list.map((item, index) => {
+              const qty = cartItems[item._id] || 0
+              if (qty > 0) {
+                return (
+                  <tr key={item._id}>
+                    <td className="cart-img-cell">
+                      <img src={url + "/images/" + item.image} alt="item-image" />
+                    </td>
+                    <td className="cart-title-cell">{item.name}</td>
+                    <td className="cart-price-cell">₹{item.price}</td>
+                    <td className="cart-qty-cell">
+                      <div className="qty-controls">
+                        <button className="qty-btn" onClick={() => removeFromCart(item._id)} aria-label={`Decrease ${item.name}`}>&minus;</button>
+                        <input type="number" className="qty-input" value={qty} min={0} onChange={(e) => setQuantity(item._id, Number(e.target.value))} />
+                        <button className="qty-btn" onClick={() => addToCart(item._id)} aria-label={`Increase ${item.name}`}>&#43;</button>
+                      </div>
+                    </td>
+                    <td className="cart-total-cell">₹{item.price * qty}</td>
+                  </tr>
+                )
+              }
+              return null
+            })}
+          </tbody>
+        </table>
       </div>
       <div className="cart-bottom">
         <div className="cart-total">
