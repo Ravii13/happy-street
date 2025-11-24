@@ -6,6 +6,9 @@ import userRouter from "./routes/userRoute.js"
 import 'dotenv/config'
 import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
+import path from 'path'
+import { fileURLToPath } from 'url'
+import fs from 'fs'
 
 //app config
 const app = express()
@@ -24,6 +27,22 @@ app.use("/images", express.static('uploads'))
 app.use("/api/user", userRouter)
 app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
+
+// Serve admin static files (SPA) at /admin
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const adminPath = path.join(__dirname, '..', 'admin')
+
+app.use('/admin', express.static(adminPath))
+app.get('/admin/*', (req, res) => {
+    const indexFile = path.join(adminPath, 'index.html')
+    if (fs.existsSync(indexFile)) {
+        res.sendFile(indexFile)
+    } else {
+        // If admin assets are not present locally, redirect to production base
+        res.redirect('https://happy-street-production.up.railway.app/')
+    }
+})
 
 app.get("/", (req, res) => {
     res.send("Api working")
