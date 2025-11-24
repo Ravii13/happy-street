@@ -2,12 +2,12 @@ import orderModel from "../models/orderModel.js";
 import userModel from '../models/userModels.js'
 import Stripe from "stripe"
 
-const stripe = new Stripe("JWT_SECRET from process.env", process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 // placing user order for frontend
 
 const placeOrder = async (req, res) => {
-    const frontend_url = "http://localhost:5173"
+    const frontend_url = process.env.FRONTEND_URL || "http://localhost:5173"
 
 
     try {
@@ -59,11 +59,11 @@ const placeOrder = async (req, res) => {
 const verifyOrder = async (req, res) => {
     const { orderId, success } = req.body
     try {
-        if (success = "true") {
+        if (success === "true") {
             await orderModel.findByIdAndUpdate(orderId, { payment: true })
             res.json({ success: true, message: "Paid" })
         } else {
-            await findByIdAndDelete(orderId)
+            await orderModel.findByIdAndDelete(orderId)
             res.json({ success: false, message: "Not Paid" })
         }
     } catch (error) {

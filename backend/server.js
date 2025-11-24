@@ -71,17 +71,18 @@ if (fs.existsSync(adminPath)) {
         console.error('Error mounting /admin static', err)
     }
     try {
-        app.get('/admin/*', (req, res) => {
+        // SPA fallback for admin: if a request starts with /admin and wasn't handled
+        // by the static middleware above, serve index.html so the admin SPA can handle routing.
+        app.use((req, res, next) => {
+            if (!req.path.startsWith('/admin')) return next()
             const indexFile = path.join(adminPath, 'index.html')
             if (fs.existsSync(indexFile)) {
-                res.sendFile(indexFile)
-            } else {
-                // Admin build missing — return 404 rather than redirecting.
-                res.status(404).send('Admin build not found')
+                return res.sendFile(indexFile)
             }
+            return res.status(404).send('Admin build not found')
         })
     } catch (err) {
-        console.error('Error registering /admin/* route', err)
+        console.error('Error registering admin SPA fallback', err)
     }
 } else {
     // If admin directory is missing, respond with 404 so nginx or the client can handle it.
@@ -106,12 +107,13 @@ if (fs.existsSync(frontendPath)) {
 
     // SPA fallback for routes not starting with /api, /images, or /admin
     try {
-        app.get('/*', (req, res, next) => {
+        // SPA fallback for frontend: serve index.html for any non-API/static/admin request
+        app.use((req, res, next) => {
             const url = req.path
             if (url.startsWith('/api') || url.startsWith('/images') || url.startsWith('/admin')) {
                 return next()
             }
-            res.sendFile(path.join(frontendPath, 'index.html'))
+            return res.sendFile(path.join(frontendPath, 'index.html'))
         })
     } catch (err) {
         console.error('Error registering frontend fallback route', err)
