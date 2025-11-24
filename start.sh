@@ -11,6 +11,19 @@ cd /app/backend
 echo "Starting backend..."
 node server.js &
 
+# Log whether frontend/admin builds exist for easier debugging
+if [ -f /app/frontend/dist/index.html ]; then
+	echo "Found frontend build at /app/frontend/dist/index.html"
+else
+	echo "Frontend build not found at /app/frontend/dist/index.html"
+fi
+
+if [ -f /app/admin/dist/index.html ]; then
+	echo "Found admin build at /app/admin/dist/index.html"
+else
+	echo "Admin build not found at /app/admin/dist/index.html"
+fi
+
 # Start nginx in foreground
 echo "Starting nginx..."
 nginx -g 'daemon off;'

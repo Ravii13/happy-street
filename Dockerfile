@@ -32,6 +32,10 @@ COPY --from=builder /build/backend/node_modules /app/backend/node_modules
 RUN mkdir -p /usr/share/nginx/html/frontend /usr/share/nginx/html/admin
 COPY --from=builder /build/frontend/dist /usr/share/nginx/html/frontend
 COPY --from=builder /build/admin/dist /usr/share/nginx/html/admin
+# Also copy builds into /app so the Node backend can serve them if nginx isn't used
+RUN mkdir -p /app/frontend/dist /app/admin/dist
+COPY --from=builder /build/frontend/dist /app/frontend/dist
+COPY --from=builder /build/admin/dist /app/admin/dist
 
 # Copy nginx config and start script
 COPY nginx.conf /etc/nginx/nginx.conf

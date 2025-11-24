@@ -44,17 +44,17 @@ if (fs.existsSync(adminPath)) {
     app.use('/admin', express.static(adminPath))
     app.get('/admin/*', (req, res) => {
         const indexFile = path.join(adminPath, 'index.html')
-        if (fs.existsSync(indexFile)) {
-            res.sendFile(indexFile)
-        } else {
-            // Fallback: redirect to production base
-            res.redirect('https://happy-street-production.up.railway.app/')
-        }
+            if (fs.existsSync(indexFile)) {
+                res.sendFile(indexFile)
+            } else {
+                // Admin build missing — return 404 rather than redirecting.
+                res.status(404).send('Admin build not found')
+            }
     })
 } else {
-    // If admin directory is missing, redirect any /admin request to production.
+    // If admin directory is missing, respond with 404 so nginx or the client can handle it.
     app.use('/admin', (req, res) => {
-        res.redirect('https://happy-street-production.up.railway.app/')
+        res.status(404).send('Admin build not found')
     })
 }
 
