@@ -58,9 +58,28 @@ if (fs.existsSync(adminPath)) {
     })
 }
 
-app.get("/", (req, res) => {
-    res.send("Api working")
-})
+// Serve frontend (Vite build) at root when present. Placed after API routes so
+// `/api`, `/images`, and `/admin` keep precedence.
+const frontendPath = path.join(__dirname, '..', 'frontend', 'dist')
+if (fs.existsSync(frontendPath)) {
+    app.use(express.static(frontendPath))
+
+    // SPA fallback for routes not starting with /api, /images, or /admin
+    app.get('/*', (req, res, next) => {
+        const url = req.path
+        if (url.startsWith('/api') || url.startsWith('/images') || url.startsWith('/admin')) {
+            return next()
+        }
+        res.sendFile(path.join(frontendPath, 'index.html'))
+    })
+
+    console.log('Frontend static serving enabled at / (from frontend/dist)')
+} else {
+    app.get("/", (req, res) => {
+        res.send("Api working")
+    })
+    console.log('Frontend dist not found; root returns API text')
+}
 
 app.listen(port, () => {
     const displayUrl = publicUrl || `http://localhost:${port}`
