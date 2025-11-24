@@ -61,7 +61,8 @@ try {
 // Serve admin static files (SPA) at /admin
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const adminPath = path.join(__dirname, '..', 'admin')
+// Prefer the built admin dist directory (this is copied into the image at /app/admin/dist)
+const adminPath = path.join(__dirname, '..', 'admin', 'dist')
 
 // Only mount local admin static files when the directory exists.
 if (fs.existsSync(adminPath)) {
