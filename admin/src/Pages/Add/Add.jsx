@@ -89,7 +89,7 @@ const Add = ({ url }) => {
                         <p>
                             Product Price
                         </p>
-                        <input onChange={onChangeHandler} value={data.price} type="number" name="price" placeholder='$0' />
+                        <input onChange={onChangeHandler} value={data.price} type="number" name="price" placeholder='₹0' />
                     </div>
                 </div>
                 <button type='submit' className='add-btn'>

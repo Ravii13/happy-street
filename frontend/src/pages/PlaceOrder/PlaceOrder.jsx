@@ -86,10 +86,10 @@ const PlaceOrder = () => {
           <input required name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='State' />
         </div>
         <div className="multi-feilds">
-          <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='Zip Code' />
+          <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="number" placeholder='Zip Code' />
           <input required name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
         </div>
-        <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
+        <input required name='phone' onChange={onChangeHandler} value={data.phone} type="number" placeholder='Phone' />
       </div>
       <div className="place-order-right">
         <div className="cart-total">
@@ -99,17 +99,17 @@ const PlaceOrder = () => {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>₹{getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
+              <p>₹{getTotalCartAmount() === 0 ? 0 : 2}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <p>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</p>
+              <p>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</p>
             </div>
           </div>
           <button type='submit'>

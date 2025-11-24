@@ -32,7 +32,7 @@ const Footer = () => {
                 <div className="footer-content-center">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><Link to="localhost:5174">Home</Link></li>
+                        <li><Link to="/">Home</Link></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#explore-menu">Delivery</a></li>
                         <li><a href="#food-display">Privacy Policy</a></li>
