@@ -1,0 +1,121 @@
+.add {
+    width: 90%; 
+    margin: 30px auto; 
+    color: #6d6d6d;
+    font-size: 14px; 
+}
+
+.add form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-img-upload img {
+    width: 100px;
+    cursor: pointer; 
+}
+
+.add-product-name,
+.add-product-description {
+    width: 100%; 
+}
+
+.add-product-name input,
+.add-product-description textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.add-product-description textarea {
+    resize: vertical;
+}
+
+.add-category-price {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px; 
+}
+
+.add-category-price select,
+.add-category-price input {
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.add-btn {
+    width: 30%;
+    padding: 12px; 
+    border: none;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+/* --- Media Queries --- */
+
+/* Medium screens (e.g., tablets) */
+@media (min-width: 768px) {
+    .add {
+        width: 80%;
+        margin-left: max(5vw, 25px); 
+        margin-top: 50px;
+        font-size: 16px;
+    }
+
+    .add-img-upload img {
+        width: 120px; 
+    }
+
+    .add-product-name,
+    .add-product-description {
+        width: max(60%, 400px);
+    }
+
+    .add-category-price {
+        flex-direction: row; 
+        gap: 30px;
+    }
+
+    .add-category-price select,
+    .add-category-price input {
+        max-width: 150px; 
+    }
+
+    .add-btn {
+        max-width: 120px; 
+    }
+}
+
+/* Large screens (e.g., desktops) */
+@media (min-width: 1024px) {
+    .add {
+        width: 70%; 
+        margin-left: max(5vw, 25px);
+        margin-top: 50px;
+        font-size: 16px;
+    }
+
+    .add-product-name,
+    .add-product-description {
+        width: max(40%, 280px);
+    }
+
+    .add-category-price select,
+    .add-category-price input {
+        max-width: 120px;
+    }
+
+    .add-btn {
+        max-width: 120px; 
+    }
+}

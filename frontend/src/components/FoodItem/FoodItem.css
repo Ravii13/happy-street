@@ -1,0 +1,224 @@
+.food-item {
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #00000015;
+    transition: 0.3s;
+    animation: fadeIn 1s;
+    display: flex; /* make card a column flex container */
+    flex-direction: column;
+    height: 100%; /* allow grid to stretch this to match row height */
+}
+
+.food-item-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+    display: block; 
+}
+
+.food-item-info {
+    padding: 9px;
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* let info area grow to fill card height */
+}
+
+.food-item-name-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.food-item-name-rating p {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+}
+
+.food-item-name-rating img {
+    width: 70px; 
+}
+
+.food-item-description {
+    font-size: 14px;
+    color: #676767;
+    margin-top: 5px;
+    line-height: 1.4; 
+    flex: 1; /* take up available vertical space so price sits at bottom */
+}
+
+.food-item-price {
+    font-size: 24px;
+    font-weight: 600; 
+    color: #ff5722;
+    margin-top: 15px;
+    margin-top: auto; /* push price to bottom when there's extra space */
+}
+
+.food-item-img-container {
+    position: relative;
+}
+
+.food-item-img-container .add {
+    width: 35px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s; 
+}
+
+.food-item-img-container .add:hover {
+    transform: scale(1.1);
+}
+
+.food-item-counter {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    background-color: #ffffff;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.food-item-counter img {
+    width: 22px;
+    cursor: pointer;
+}
+
+.food-item-counter p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* --- Media Queries --- */
+
+/* Small devices (phones, up to 600px) */
+@media (max-width: 600px) {
+    .food-item-info {
+        padding: 15px;
+    }
+
+    .food-item-name-rating p {
+        font-size: 18px;
+    }
+
+    .food-item-name-rating img {
+        width: 60px;
+    }
+
+    .food-item-description {
+        font-size: 13px; 
+    }
+
+    .food-item-price {
+        font-size: 20px; 
+    }
+
+    .food-item-img-container .add {
+        width: 30px; 
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .food-item-counter {
+        gap: 8px;
+        padding: 5px 8px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .food-item-counter img {
+        width: 20px;
+    }
+
+    .food-item-counter p {
+        font-size: 16px;
+    }
+}
+
+/* Medium devices (tablets, 601px to 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+    .food-item-info {
+        padding: 18px;
+    }
+
+    .food-item-name-rating p {
+        font-size: 19px;
+    }
+
+    .food-item-name-rating img {
+        width: 65px;
+    }
+
+    .food-item-description {
+        font-size: 14px;
+    }
+
+    .food-item-price {
+        font-size: 22px;
+    }
+
+    .food-item-img-container .add {
+        width: 32px;
+    }
+
+    .food-item-counter {
+        gap: 9px;
+        padding: 5px 9px;
+    }
+
+    .food-item-counter img {
+        width: 21px;
+    }
+
+    .food-item-counter p {
+        font-size: 17px;
+    }
+}
+
+
+/* Extra Large devices (large desktops, 1025px and up) */
+@media (min-width: 1025px) {
+    .food-item-name-rating p {
+        font-size: 22px; 
+    }
+
+    .food-item-description {
+        font-size: 15px; 
+    }
+
+    .food-item-price {
+        font-size: 26px; 
+    }
+
+    .food-item-img-container .add {
+        width: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .food-item-counter {
+        gap: 12px;
+        padding: 8px 12px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .food-item-counter img {
+        width: 24px;
+    }
+
+    .food-item-counter p {
+        font-size: 20px; 
+    }
+}

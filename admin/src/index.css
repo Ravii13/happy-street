@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #fcfcfc;
+  font-size: 16px; 
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #a9a9a9;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column; 
+  padding: 15px;
+  gap: 15px; 
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --- Medium Devices (Tablets, 600px and up) --- */
+@media (min-width: 600px) {
+  body {
+    font-size: 17px; 
+  }
+
+  .app-content {
+    flex-direction: row;
+    padding: 20px;
+    gap: 25px;
+  }
+
+  .app-content > :first-child { 
+    flex-basis: 200px;
+    flex-shrink: 0;
+  }
+  .app-content > :last-child { 
+    flex-grow: 1;
+  }
+  
+}
+
+/* --- Large Devices (Desktops, 900px and up) --- */
+@media (min-width: 900px) {
+  body {
+    font-size: 18px; 
+  }
+
+  .app-content {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 30px;
+    gap: 40px;
+  }
+ 
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 20px;
+  }
+  
+}
+
+/* --- Extra Large Devices (Large Desktops, 1200px and up) --- */
+@media (min-width: 1200px) {
+  .app-content {
+    max-width: 1400px;
+    padding: 40px;
+  }
+}

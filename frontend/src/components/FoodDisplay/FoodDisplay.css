@@ -1,0 +1,91 @@
+.food-display {
+    margin-top: 30px;
+    padding: 0 20px;    
+}
+
+.food-display h2 {
+    font-size: max(28px, 2.5vw); 
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.food-display-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row on large screens */
+    gap: 30px;
+    margin-top: 30px;
+    row-gap: 50px;
+    justify-content: center;
+    align-items: stretch; /* ensure grid items stretch to same height */
+    grid-auto-rows: 1fr; /* make rows equal height */
+}
+
+/* Media Queries for Responsiveness */
+
+/* Extra small devices (phones, up to 600px) */
+@media (max-width: 600px) {
+    .food-display {
+        margin-top: 20px;
+        padding: 0 15px;
+    }
+
+    .food-display h2 {
+        font-size: 24px; 
+        margin-bottom: 25px;
+    }
+
+    .food-display-list {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+        row-gap: 40px; 
+        margin-top: 20px;
+        grid-auto-rows: auto;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 601px to 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+    .food-display {
+        margin-top: 25px;
+        padding: 0 20px;
+    }
+
+    .food-display h2 {
+        font-size: 28px;
+    }
+
+    .food-display-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        row-gap: 45px;
+        margin-top: 25px;
+    }
+}
+
+/* Medium devices (landscape tablets, 769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .food-display h2 {
+        font-size: 32px;
+    }
+
+    .food-display-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        row-gap: 50px;
+    }
+}
+
+/* Large devices (laptops and desktops, 1025px and up) */
+@media (min-width: 1025px) {
+    .food-display h2 {
+        font-size: max(36px, 2.8vw); 
+    }
+
+    .food-display-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px; 
+        row-gap: 60px;
+    }
+}

@@ -1,0 +1,121 @@
+.list-add {
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+    padding-bottom: 120px;
+}
+
+.list-table-format {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1.2fr 1fr 0.5fr;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 15px;
+    border: 1px solid #cacaca;
+    font-size: 16px;
+}
+
+.list-table-format.title {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.list-table-format img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cursor {
+    cursor: pointer;
+    color: #ff4d4d;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* For screens smaller than 1024px (e.g., Laptops/Larger Tablets) */
+@media (max-width: 1024px) {
+    .list-table-format {
+        grid-template-columns: 0.5fr 2fr 1.2fr 1fr 0.5fr;
+        gap: 15px;
+        font-size: 15px; 
+    }
+}
+
+/* For screens smaller than 768px (e.g., Tablets) */
+@media (max-width: 768px) {
+    .list-table-format {
+        grid-template-columns: 0.5fr 1.8fr 1fr 0.8fr 0.5fr;
+        gap: 10px;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .list-table-format.title {
+        grid-template-columns: 0.5fr 1.8fr 1fr 0.8fr 0.5fr;
+    }
+
+    .list-table-format img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .cursor {
+        font-size: 1.2em; 
+    }
+}
+
+/* For screens smaller than 600px (e.g., Mobile Landscape/Small Tablets) */
+@media (max-width: 600px) {
+    .list-table-format {
+        grid-template-columns: 0.5fr 1.5fr 1fr 0.8fr 0.5fr;
+        gap: 8px;
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .list-table-format.title {
+        grid-template-columns: 0.5fr 1.5fr 1fr 0.8fr 0.5fr;
+    }
+
+    .list-table-format img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .list-table-format p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cursor {
+        font-size: 1.15em;
+    }
+}
+
+/* For screens smaller than 400px (e.g., Very Small Mobiles) */
+@media (max-width: 400px) {
+    .list-table-format {
+        grid-template-columns: 1.1fr 1.2fr 0.8fr 0.6fr 0.4fr;
+        gap: 5px;
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .list-table-format.title {
+        grid-template-columns: 1.1fr 1.2fr 0.8fr 0.6fr 0.4fr;
+    }
+
+    .list-table-format img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .cursor {
+        font-size: 1.1em; 
+    }
+}

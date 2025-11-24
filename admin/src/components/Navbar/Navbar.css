@@ -1,0 +1,100 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 4%;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    width: max(10%, 80px); 
+    height: auto;
+}
+
+.navbar h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    color: #333; 
+    white-space: nowrap;
+}
+
+.navbar h1 img {
+    margin-right: 5px; 
+}
+
+.navbar .profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; 
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small screens (e.g., mobile phones) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 5px 2%; 
+    }
+
+    .navbar .logo {
+        width: max(12%, 60px);
+    }
+
+    .navbar h1 {
+        font-size: 16px; 
+        gap: 5px;
+    }
+
+    .navbar h1 span { 
+        display: none; 
+    }
+
+    .navbar .profile {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Medium screens (e.g., tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .navbar {
+        padding: 8px 3%; 
+    }
+
+    .navbar .logo {
+        width: max(10%, 70px);
+    }
+
+    .navbar h1 {
+        font-size: 18px;
+    }
+
+    .navbar .profile {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Large screens (e.g., desktops) - already covered by base styles, but can be explicit */
+@media (min-width: 1025px) {
+    .navbar {
+        padding: 10px 5%;
+    }
+
+    .navbar .logo {
+        width: max(8%, 90px);
+    }
+
+    .navbar h1 {
+        font-size: 22px;
+    }
+
+    .navbar .profile {
+        width: 45px;
+        height: 45px;
+    }
+}

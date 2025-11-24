@@ -1,0 +1,167 @@
+.header {
+    height: 34vw;
+    margin: 30px auto;
+    background-size: cover; 
+    position: relative;
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+.header-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.header-contents {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5vw;
+    max-width: 50%;
+    bottom: 10%; 
+    left: 6vw;
+    z-index: 2;
+    animation: fadeIn 3s forwards; 
+}
+
+.header-contents h2 {
+    font-weight: 600; 
+    color: #ffffff;
+    font-size: max(3.5vw, 28px); 
+    text-shadow: 1px 3px 0px rgba(0, 0, 0, 0.5); 
+}
+
+.header-contents p {
+    color: #ffffff;
+    font-size: max(1.2vw, 16px);
+    line-height: 1.5;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.4); 
+}
+
+.header-contents button {
+    border: none;
+    color: #000000;
+    font-weight: 500;
+    padding: 1.2vw 2.5vw;
+    background-color: #f5c3b7de;
+    font-size: max(1.1vw, 15px); 
+    border-radius: 50px;
+    cursor: pointer; 
+    transition: all 0.3s ease;
+}
+
+.header-contents button:hover {
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablets (portrait and landscape) and small laptops */
+@media (max-width: 1050px) {
+    .header {
+        height: 40vw; 
+    }
+
+    .header-contents {
+        max-width: 55%; 
+        left: 5vw;
+        gap: 1.2vw;
+    }
+
+    .header-contents h2 {
+        font-size: max(5vw, 24px); 
+    }
+
+    .header-contents p {
+        font-size: max(1.5vw, 17px);
+    }
+
+    .header-contents button {
+        padding: 1.5vw 3vw; 
+        font-size: max(1.2vw, 16px);
+    }
+}
+
+/* Medium tablets and large phones */
+@media (max-width: 768px) {
+    .header {
+        height: 250px;
+        margin: 20px auto;
+    }
+
+    .header-image {
+        height: 100%;
+    }
+
+    .header-contents {
+        max-width: 70%;
+        left: 4vw;
+        gap: 1.8vw;
+        bottom: 8%; 
+    }
+
+    .header-contents h2 {
+        font-size: max(7vw, 25px); 
+    }
+
+    .header-contents p {
+        font-size: max(2vw, 15px); 
+        display: block;
+    }
+
+    .header-contents button {
+        padding: 2vw 4vw; 
+        font-size: max(1.5vw, 14px);
+    }
+}
+
+/* Small phones */
+@media (max-width: 500px) {
+    .header {
+        height: 200px; 
+        margin: 15px auto;
+    }
+
+    .header-contents {
+        max-width: 85%; 
+        left: 3vw;
+        gap: 2vw;
+        bottom: 5%;
+    }
+
+    .header-contents h2 {
+        font-size: max(8vw, 28px);
+        line-height: 1.2; 
+    }
+
+    .header-contents p {
+        font-size: max(2.5vw, 14px); 
+        display: none;
+    }
+
+    .header-contents button {
+        padding: 2.5vw 5vw;
+        font-size: max(2vw, 13px);
+    }
+}
