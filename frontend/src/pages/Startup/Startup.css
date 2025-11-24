@@ -14,19 +14,24 @@
   align-items:center;
   width:100%;
   max-width:1100px;
+  position: relative;
 }
 
 .startup-hero-left{
   flex:1;
 }
 
+/* logo shown near hero; make it circular with white background and subtle shadow */
 .startup-logo{
-  width:74px;
-  height:74px;
-  border-radius:18px;
+  width:64px;
+  height:64px;
+  border-radius:50%;
   object-fit:cover;
-  box-shadow:0 6px 18px rgba(0,0,0,0.42);
-  margin-bottom:18px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.18);
+  background: #fff;
+  padding:6px;
+  display:inline-block;
+  margin-bottom:12px;
 }
 
 .startup-hero-left h1{
@@ -85,6 +90,7 @@
   height:100%;
   object-fit:cover;
   display:block;
+  border-radius:12px;
 }
 
 @media (max-width: 900px){
