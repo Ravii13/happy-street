@@ -33,16 +33,24 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const adminPath = path.join(__dirname, '..', 'admin')
 
-app.use('/admin', express.static(adminPath))
-app.get('/admin/*', (req, res) => {
-    const indexFile = path.join(adminPath, 'index.html')
-    if (fs.existsSync(indexFile)) {
-        res.sendFile(indexFile)
-    } else {
-        // If admin assets are not present locally, redirect to production base
+// Only mount local admin static files when the directory exists.
+if (fs.existsSync(adminPath)) {
+    app.use('/admin', express.static(adminPath))
+    app.get('/admin/*', (req, res) => {
+        const indexFile = path.join(adminPath, 'index.html')
+        if (fs.existsSync(indexFile)) {
+            res.sendFile(indexFile)
+        } else {
+            // Fallback: redirect to production base
+            res.redirect('https://happy-street-production.up.railway.app/')
+        }
+    })
+} else {
+    // If admin directory is missing, redirect any /admin request to production.
+    app.use('/admin', (req, res) => {
         res.redirect('https://happy-street-production.up.railway.app/')
-    }
-})
+    })
+}
 
 app.get("/", (req, res) => {
     res.send("Api working")
