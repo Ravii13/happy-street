@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
 
-  const { cartItems, food_list, removeFromCart, addToCart, getTotalCartAmount, url } = useContext(StoreContext)
+  const { cartItems, food_list, removeFromCart, addToCart, setQuantity, getTotalCartAmount, url } = useContext(StoreContext)
 
   const navigate = useNavigate()
 
@@ -47,7 +47,7 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {food_list.map((item) => {
+        {food_list.map((item, index) => {
           const qty = cartItems[item._id] || 0
           if (qty > 0) {
             return (
@@ -55,14 +55,14 @@ const Cart = () => {
                 <div className="cart-items-title cart-items-item">
                   <img src={url + "/images/" + item.image} alt="item-image" />
                   <p className="cart-item-title">{item.name}</p>
-                  <p className="cart-price">₹{item.price}</p>
+                  <p>₹{item.price}</p>
                   <div className="qty-controls">
                     <button className="qty-btn" onClick={() => removeFromCart(item._id)} aria-label={`Decrease ${item.name}`}>&minus;</button>
-                    <span className="qty-value">{qty}</span>
+                    <input type="number" className="qty-input" value={qty} min={0} onChange={(e) => setQuantity(item._id, Number(e.target.value))} />
                     <button className="qty-btn" onClick={() => addToCart(item._id)} aria-label={`Increase ${item.name}`}>&#43;</button>
                   </div>
-                  <p className="cart-line-total">₹{item.price * qty}</p>
-                  <p onClick={() => { while (cartItems[item._id] > 0) { removeFromCart(item._id) } }} className='cross' title="Remove item">X</p>
+                  <p>₹{item.price * qty}</p>
+                  <p onClick={() => setQuantity(item._id, 0)} className='cross' title="Remove item">X</p>
                 </div>
                 <hr />
               </div>

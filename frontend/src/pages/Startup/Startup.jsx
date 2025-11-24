@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Startup.css'
 import { assets } from '../../assets/assets'
 
@@ -6,13 +6,22 @@ const Startup = ({ setShowLogin, setLoginMode }) => {
 
   const handleSignUp = () => {
     setLoginMode && setLoginMode('Sign-Up')
-    setShowLogin(true)
+    setShowLogin && setShowLogin(true)
+    // also dispatch a global event so App can open the popup even if prop isn't passed
+    window.dispatchEvent(new CustomEvent('openLogin', { detail: { mode: 'Sign-Up' } }))
   }
 
   const handleLogin = () => {
     setLoginMode && setLoginMode('Login')
-    setShowLogin(true)
+    setShowLogin && setShowLogin(true)
+    window.dispatchEvent(new CustomEvent('openLogin', { detail: { mode: 'Login' } }))
   }
+
+  useEffect(() => {
+    // Prevent background scroll on the startup landing page
+    document.body.classList.add('no-scroll')
+    return () => document.body.classList.remove('no-scroll')
+  }, [])
 
   return (
     <div className="startup-page">
