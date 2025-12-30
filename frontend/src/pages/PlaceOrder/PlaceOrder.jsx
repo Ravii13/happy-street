@@ -15,9 +15,7 @@ const PlaceOrder = () => {
     email: "",
     street: "",
     city: "",
-    state: "",
     zipcode: "",
-    country: "",
     phone: ""
   })
 
@@ -83,11 +81,7 @@ const PlaceOrder = () => {
         <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street' />
         <div className="multi-feilds">
           <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
-          <input required name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='State' />
-        </div>
-        <div className="multi-feilds">
           <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="number" placeholder='Zip Code' />
-          <input required name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
         </div>
         <input required name='phone' onChange={onChangeHandler} value={data.phone} type="number" placeholder='Phone' />
       </div>
