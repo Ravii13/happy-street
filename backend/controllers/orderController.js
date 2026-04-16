@@ -19,8 +19,16 @@ if (process.env.STRIPE_SECRET_KEY) {
 // placing user order for frontend
 
 const placeOrder = async (req, res) => {
-    const frontend_url = process.env.FRONTEND_URL || "http://localhost:5173"
-
+    // Build frontend URL from request origin or environment variables
+    // In production with Docker+nginx, use PUBLIC_URL or request origin
+    let frontend_url = process.env.PUBLIC_URL || 
+                      process.env.PRODUCTION_URL || 
+                      process.env.BASE_URL || 
+                      process.env.FRONTEND_URL || 
+                      `http://${req.get('host')}`
+    
+    // Remove trailing slash if present
+    frontend_url = frontend_url.replace(/\/$/, '')
 
     try {
         const newOrder = new orderModel({
